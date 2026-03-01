@@ -35,7 +35,7 @@ int counter = 0;
 int summing() {
   struct node *curr = head;
   int sum = 0;
-  while (curr) {
+  while ( curr ) {
     sum += curr->data;
     curr = curr->next;
   }
@@ -67,11 +67,13 @@ void insert_sorted(uint64_t data) {
     }
 
     prev->next = new_node;
-    new_node->next = curr;
+    if (curr != NULL) {
+      new_node->next = curr->next;
+    }
   }
 
   info.sum += data;
-  ASSERT(info.sum == summing());
+  ASSERT(info.sum = summing());
 }
 
 int index_of(uint64_t data) {

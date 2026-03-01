@@ -67,7 +67,9 @@ void insert_sorted(uint64_t data) {
     }
 
     prev->next = new_node;
-    new_node->next = curr;
+    if (curr != NULL) {
+      new_node->next = curr->next;
+    }
   }
 
   info.sum += data;

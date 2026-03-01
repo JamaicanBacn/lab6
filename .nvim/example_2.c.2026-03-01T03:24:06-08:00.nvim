@@ -5,8 +5,7 @@
 #define ASSERT(expr)                                                           \
   {                                                                            \
     if (!(expr)) {                                                             \
-      fprintf(stderr, " %s line: %d Assertion failed: %s\n ", __FILE__,        \
-              __LINE__, #expr);                                                \
+      fprintf(stderr, " %s line: %d Assertion failed: %s\n ", __FILE__ , __LINE__ ,#expr);\
       exit(1);                                                                 \
     }                                                                          \
   }
@@ -32,15 +31,19 @@ node_t *head = NULL;
 info_t info = {0};
 int counter = 0;
 
-int summing() {
-  struct node *curr = head;
+int summing()
+{
+  struct node * curr = head;
   int sum = 0;
-  while (curr) {
+  while( head )
+  { 
     sum += curr->data;
     curr = curr->next;
   }
 
   return sum;
+  
+
 }
 
 void insert_sorted(uint64_t data) {
@@ -67,12 +70,18 @@ void insert_sorted(uint64_t data) {
     }
 
     prev->next = new_node;
-    new_node->next = curr;
+    if (curr != NULL) {
+      new_node->next = curr->next;
+    }
+    
+
   }
 
   info.sum += data;
-  ASSERT(info.sum == summing());
+  ASSERT( info.sum = summing());
 }
+
+
 
 int index_of(uint64_t data) {
   node_t *curr = head;
@@ -95,7 +104,7 @@ int main() {
   insert_sorted(3);
   insert_sorted(5);
   insert_sorted(2);
-
+  
   TEST(info.sum == 1 + 3 + 5 + 2);
   TEST(index_of(2) == 1);
 
